@@ -40,3 +40,9 @@ cat $project_folder"/data/"* | awk '{print $1}' | sort -u | grep -v "gene_id" | 
 # gdc_sample_sheet_star_gene_counts.tsv
 # /home/felipe/Documents/BiomarkerIdentification_ProstateCancer/metadata/gdc_sample_sheet_star_gene_counts.tsv
 # Do not forget to add code to upload files via github
+gh auth login
+sudo git add . 
+sudo git commit -m "update" 
+sudo git push
+
+
