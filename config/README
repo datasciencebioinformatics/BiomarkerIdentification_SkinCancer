@@ -6,10 +6,10 @@
 #### Clinical file
 project_folder="/home/felipe/Downloads/BiomarkerIdentification_SkinCancer/"
 Manifest_file=$project_folder"gdc_manifest.2026-04-05.155802.txt"
-Metadata_file=$project_folder"metadata.cohort.2026-05-04.json"
-Sample_sheet_file=$project_folder"gdc_sample_sheet.2026-05-04.tsv"
-Biospecimen_file=$project_folder"biospecimen.cohort.2026-05-04.tar.gz"
-Clinical_file=$project_folder"clinical.cohort.2026-05-04.tar.gz"
+Metadata_file=$project_folder"metadata.cohort.2026-04-05.json"
+Sample_sheet_file=$project_folder"gdc_sample_sheet.2026-04-05.tsv"
+Biospecimen_file=$project_folder"biospecimen.cohort.2026-04-05.tar.gz"
+Clinical_file=$project_folder"clinical.cohort.2026-04-05.tar.gz "
 data_folder=$project_folder"/data/"
 
 ### Filter to keep only the STAR - Counts data
