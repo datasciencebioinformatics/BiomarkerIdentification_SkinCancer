@@ -27,6 +27,6 @@ dds <- DESeqDataSetFromMatrix(countData = read_counts_table,
 dds <- DESeq(dds)
 
 # Obtain the results
-res_Primary_normal <- results(dds, contrast=c("Tissue.Type","Primary","Normal"))
-res_Primary_normal <- results(dds, contrast=c("Tissue.Type","Primary","Normal"))
+res_Primary_normal <- results(dds, contrast=c("Tumor.Descriptor","Primary","Not Applicable"))
+res_Metastatic_normal <- results(dds, contrast=c("Tumor.Descriptor","Metastatic","Not Applicable"))
 
