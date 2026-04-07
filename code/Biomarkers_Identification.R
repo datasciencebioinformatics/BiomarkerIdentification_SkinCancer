@@ -22,7 +22,7 @@ correspondence_table<-counts_table[,c("gene_id",	"gene_name")]
 #######################################################################################
 # 2 - Biomarkers table
 # Set the path to manifest file
-known_biomarkers_file=paste(project_folder,"tables/Postate_Cancer_Known_Biomarkers.xlsx",sep="")
+known_biomarkers_file=paste(project_folder,"tables/Skin_Cancer_Known_Biomarkers.xlsx",sep="")
 
 # Load data
 # Load clinical data
