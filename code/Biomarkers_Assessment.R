@@ -1,6 +1,6 @@
 # 2. Basic plot
 # 1. Transform data (vst is recommended for large datasets)
-vsd <- vst(dds, blind = FALSE)
+vsd <- vst(dds_tumor_genes, blind = FALSE)
 
 # 1. Extract PCA data
 pcaData <- plotPCA(vsd, intgroup = c("Tissue.Type"), returnData = TRUE)
