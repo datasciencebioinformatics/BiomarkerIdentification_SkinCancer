@@ -1,3 +1,12 @@
+########################################################################
+# First phase, Tissue.Type
+# Create DESeqDataSet from your prepared matrix
+dds <- DESeqDataSetFromMatrix(countData = read_counts_table,
+                              colData = sample_sheet_data,
+                              design = ~ Tissue.Type)
+# Run DeSeq2
+dds <- DESeq(dds)
+
 # 2. Basic plot
 # 1. Transform data (vst is recommended for large datasets)
 vsd <- vst(dds, blind = FALSE)
