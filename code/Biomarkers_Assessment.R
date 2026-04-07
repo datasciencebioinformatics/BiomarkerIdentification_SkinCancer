@@ -56,6 +56,16 @@ df_mean<-data.frame(
     avg.metastatic=rowMeans(read_counts_table_tpm[res_tumor_normal$gene,metastatic_sample_ids]), 
     std.metastatic=0)
 
+# For each gene, calculate the std too the 
+for (gene in rownames(df_mean))
+{
+  df_mean[gene,"std.normal"]<-sd(unstranded_data[gene,normal_sample_ids])
+  df_mean[gene,"std.tumor"]<-sd(unstranded_data[gene,tumor_sample_ids])
+  df_mean[gene,"std.primary"]<-sd(unstranded_data[gene,primary_sample_ids])
+  df_mean[gene,"std.metastatic"]<-sd(unstranded_data[gene,metastatic_sample_ids])  
+}      
+
+# Add the Gene smbol to the table      
 
 
 # Save list
