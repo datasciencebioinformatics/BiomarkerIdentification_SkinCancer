@@ -34,3 +34,24 @@ png(filename=paste(project_folder,"VennDiagram_Plot_of_RNASeq_Samples_TissueType
   stages_tumor_primary_metastatic +    theme_minimal()
 dev.off()
 #######################################################################################################################################
+# Biomarkers whose fold change (FC) was ≥50 and average TPM of control samples ≤ 10.
+# First, compile data.frame with 
+# Take p-value
+df_mean<-data.frame(
+    ENSEMBL=stage_specific_genes$ENSEMBL,
+    ENTREZID=stage_specific_genes$ENTREZID,
+    SYMBOL=stage_specific_genes$SYMBOL,
+    avg.normal=rowMeans(unstranded_data[stage_specific_genes$gene,sample_normal]),
+    std.normal=0,
+    avg.stageI=rowMeans(unstranded_data[stage_specific_genes$gene,sample_stage_I]),
+    std.stageI=0, 
+    avg.stageII=rowMeans(unstranded_data[stage_specific_genes$gene,sample_stage_II]), 
+    std.stageII=0, 
+    avg.stageIII=rowMeans(unstranded_data[stage_specific_genes$gene,sample_stage_III]), 
+    std.stageIII=0)
+
+
+
+# Save list
+sheets_list <- list("tumor_genes"= res_tumor_normal, "primary_tumor_genes" = res_Primary_normal, "metastatic_tumor_genes"=res_Metastatic_normal)
+write_xlsx(sheets_list,paste(project_folder,"Supplemental_Table_S1.xlsx",sep="" ))
