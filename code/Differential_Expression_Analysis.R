@@ -33,7 +33,5 @@ res_Metastatic_normal <- results(dds, contrast=c("Tumor.Descriptor","Metastatic"
 res_Primary_normal<-data.frame(res_Primary_normal[which(res_Primary_normal$padj<0.05 & abs(res_Primary_normal$log2FoldChange)>2),])
 res_Metastatic_normal<-data.frame(res_Metastatic_normal[which(res_Metastatic_normal$padj<0.05 & abs(res_Metastatic_normal$log2FoldChange)>2),])
 ########################################################################
-# Save list
-sheets_list <- list("tumor_genes"= res_tumor_normal, "primary_tumor_genes" = res_Primary_normal, "metastatic_tumor_genes"=res_Metastatic_normal)
-write_xlsx(sheets_list,paste(project_folder,"Supplemental_Table_S1.xlsx",sep="" ))
+
 
