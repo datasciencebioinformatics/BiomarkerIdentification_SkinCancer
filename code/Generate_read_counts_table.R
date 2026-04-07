@@ -18,11 +18,17 @@ sample_sheet_data<-read.delim(file = Sample_sheet_filtered_file, sep = '\t', hea
 # Load gene ids data
 gene_ids_data<-read.delim(file = gene_ids_file, sep = '\t', header = TRUE,fill=TRUE)
 ###################################################################################
-# Star dataframe with all gene ids
+# Star dataframe with all gene ids unstranded
 read_counts_table<-data.frame(gene_id=as.vector(gene_ids_data[,1]))
 
-# Set rownames
+# Star dataframe with all gene ids tpm_unstranded
+read_counts_table_tpm<-data.frame(gene_id=as.vector(gene_ids_data[,1]))
+
+# Set rownames unstranded
 rownames(read_counts_table)<-read_counts_table$gene_id
+
+# Set rownames tpm_unstranded
+rownames(read_counts_table_tpm)<-read_counts_table_tpm$gene_id
 
 # Set rownames of 
 rownames(sample_sheet_data)<-sample_sheet_data$File.ID
@@ -45,14 +51,23 @@ for (sample in rownames(sample_sheet_data))
   # Set rownames
   rownames(counts_table)<-counts_table$gene_id
 
-  # Start data.frame for the table
+  # Start data.frame for the table unstranded
   df_counts_table<-data.frame(file_id=counts_table[rownames(counts_table),"unstranded"])
+
+  # Start data.frame for the table unstranded
+  df_counts_table_tpm<-data.frame(file_id=counts_table[rownames(counts_table),"tpm_unstranded"])  
 
   # Set file_id in the colname
   colnames(df_counts_table)<-file_id
 
-  # Add to table
+  # Add to table unstranded
   read_counts_table<-cbind(read_counts_table,df_counts_table)
+
+  # Add to table tpm_unstranded
+  read_counts_table_tpm<-cbind(df_counts_table_tpm,df_counts_table)  
 }
-# Remove first collumn
+# Remove first collumn unstranded
 read_counts_table<-read_counts_table[,-1]
+
+# Remove first collumn tpm_unstranded
+read_counts_table_tpm<-read_counts_table_tpm[,-1]
