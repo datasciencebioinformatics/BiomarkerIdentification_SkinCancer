@@ -13,8 +13,7 @@ res_tumor_normal <- results(dds, contrast=c("Tissue.Type","Tumor","Normal"))
 # Take 
 res_tumor_normal<-data.frame(res_tumor_normal[which(res_tumor_normal$padj<0.05 & abs(res_tumor_normal$log2FoldChange)>2),])
 
-# Write a data frame to Excel
-write_xlsx(res_tumor_normal,  paste(project_folder,"Supplemental_Table_S1.xlsx",sep="" ))
+
 ########################################################################
 # Second phase, Tissue.Type
 # First phase, Tissue.Type
@@ -29,4 +28,8 @@ dds <- DESeq(dds)
 # Obtain the results
 res_Primary_normal <- results(dds, contrast=c("Tumor.Descriptor","Primary","Not Applicable"))
 res_Metastatic_normal <- results(dds, contrast=c("Tumor.Descriptor","Metastatic","Not Applicable"))
+
+
+sheets_list <- list("tumor_genes"= res_tumor_normal, "primary_tumor_genes" = res_Primary_normal, "metastatic_tumor_genes"=res_Metastatic_normal)
+write_xlsx(sheets_list,paste(project_folder,"Supplemental_Table_S1.xlsx",sep="" ))
 
