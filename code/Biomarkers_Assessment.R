@@ -34,21 +34,27 @@ png(filename=paste(project_folder,"VennDiagram_Plot_of_RNASeq_Samples_TissueType
   stages_tumor_primary_metastatic +    theme_minimal()
 dev.off()
 #######################################################################################################################################
+# Take the normal samples, tumor samples, primary samples, metastic samples
+normal_sample_ids     <- rownames(sample_sheet_data[which(sample_sheet_data$Tissue.Type     == "Normal"),])
+tumor_sample_ids      <- rownames(sample_sheet_data[which(sample_sheet_data$Tissue.Type     == "Tumor"),])
+primary_sample_ids    <- rownames(sample_sheet_data[which(sample_sheet_data$Tumor.Descriptor=="Primary"),])
+metastatic_sample_ids <- rownames(sample_sheet_data[which(sample_sheet_data$Tumor.Descriptor=="Metastatic"),])
+
+# Add gene id and gene symbol to table
+cbind(gene_id=rownames(read_counts_table_tpm,read_counts_table_tpm)
+
 # Biomarkers whose fold change (FC) was ≥50 and average TPM of control samples ≤ 10.
 # First, compile data.frame with 
 # Take p-value
 df_mean<-data.frame(
-    ENSEMBL=stage_specific_genes$ENSEMBL,
-    ENTREZID=stage_specific_genes$ENTREZID,
-    SYMBOL=stage_specific_genes$SYMBOL,
-    avg.normal=rowMeans(unstranded_data[stage_specific_genes$gene,sample_normal]),
+    avg.normal=rowMeans(read_counts_table_tpm[res_tumor_normal$gene,normal_sample_ids]),
     std.normal=0,
-    avg.stageI=rowMeans(unstranded_data[stage_specific_genes$gene,sample_stage_I]),
-    std.stageI=0, 
-    avg.stageII=rowMeans(unstranded_data[stage_specific_genes$gene,sample_stage_II]), 
-    std.stageII=0, 
-    avg.stageIII=rowMeans(unstranded_data[stage_specific_genes$gene,sample_stage_III]), 
-    std.stageIII=0)
+    avg.tumor=rowMeans(read_counts_table_tpm[res_tumor_normal$gene,tumor_sample_ids]),
+    std.tumor=0, 
+    avg.primary=rowMeans(read_counts_table_tpm[res_tumor_normal$gene,primary_sample_ids]), 
+    std.primary=0, 
+    avg.metastatic=rowMeans(read_counts_table_tpm[res_tumor_normal$gene,metastatic_sample_ids]), 
+    std.metastatic=0)
 
 
 
