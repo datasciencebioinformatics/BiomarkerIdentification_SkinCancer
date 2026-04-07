@@ -1,7 +1,7 @@
 # Construct PCA
 # 2. Basic plot
 # 1. Transform data (vst is recommended for large datasets)
-vsd <- vst(dds_tumor_genes, blind = FALSE)
+vsd <- vst(dds, blind = FALSE)
 
 # 1. Extract PCA data
 pcaData <- plotPCA(vsd, intgroup = c("Tissue.Type"), returnData = TRUE)
@@ -23,22 +23,9 @@ dev.off()
 
 
 #######################################################################################################################################
-# Construct venn diagram                                                                                                                               #                                                       #
-# Select stages 
-stages_tumor_primary_metastatic<-ggVennDiagram(list(tumor_normal    =res_tumor_normal$Gene,primary_normal  =res_Primary_normal$Gene, metastatic_normal  =res_Metastatic_normal$Gene), label_alpha = 0) + scale_fill_viridis() + theme_bw() + ggtitle("tumor, primary and metastatic")
-
-# Melt tabele
-# Plot_raw_vibration_data.png                                                                                                            
-png(filename=paste(project_folder,"VennDiagram_Plot_of_RNASeq_Samples_TissueType.png",sep=""), width = 15, height = 15, res=600, units = "cm")  
-  # 3. Create custom ggplot
-  stages_tumor_primary_metastatic +    theme_minimal()
-dev.off()
-#######################################################################################################################################
 # Take the normal samples, tumor samples, primary samples, metastic samples
 normal_sample_ids     <- rownames(sample_sheet_data[which(sample_sheet_data$Tissue.Type     == "Normal"),])
 tumor_sample_ids      <- rownames(sample_sheet_data[which(sample_sheet_data$Tissue.Type     == "Tumor"),])
-primary_sample_ids    <- rownames(sample_sheet_data[which(sample_sheet_data$Tumor.Descriptor=="Primary"),])
-metastatic_sample_ids <- rownames(sample_sheet_data[which(sample_sheet_data$Tumor.Descriptor=="Metastatic"),])
 
 # Add gene id and gene symbol to table
 cbind(gene_id=rownames(read_counts_table_tpm,read_counts_table_tpm)
