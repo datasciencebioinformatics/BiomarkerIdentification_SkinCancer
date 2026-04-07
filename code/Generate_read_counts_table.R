@@ -55,7 +55,7 @@ for (sample in rownames(sample_sheet_data))
   df_counts_table<-data.frame(file_id=counts_table[rownames(counts_table),"unstranded"])
 
   # Start data.frame for the table unstranded
-  df_counts_table_tpm<-data.frame(file_id=counts_table[rownames(counts_table),"tpm_unstranded"])  
+  df_counts_table_tpm<-data.frame(file_id=counts_table[rownames(df_counts_table_tpm),"tpm_unstranded"])  
 
   # Set file_id in the colname
   colnames(df_counts_table)<-file_id
