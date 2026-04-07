@@ -62,10 +62,10 @@ for (sample in rownames(sample_sheet_data))
   colnames(df_counts_table_tpm)<-file_id
 
   # Add to table unstranded
-  read_counts_table<-cbind(df_counts_table_unstranded,df_counts_table)
+  read_counts_table<-cbind(read_counts_table,df_counts_table_unstranded)
 
   # Add to table tpm_unstranded
-  read_counts_table_tpm<-cbind(df_counts_table_tpm,df_counts_table)  
+  read_counts_table_tpm<-cbind(read_counts_table_tpm,df_counts_table_tpm)  
 }
 # Remove first collumn unstranded
 read_counts_table<-read_counts_table[,-1]
