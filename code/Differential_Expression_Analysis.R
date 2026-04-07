@@ -15,23 +15,5 @@ res_tumor_normal<-data.frame(res_tumor_normal[which(res_tumor_normal$padj<0.05 &
 
 
 ########################################################################
-# Second phase, Tissue.Type
-# First phase, Tissue.Type
-# Create DESeqDataSet from your prepared matrix
-dds <- DESeqDataSetFromMatrix(countData = read_counts_table,
-                              colData = sample_sheet_data,
-                              design = ~ Tumor.Descriptor)
-
-# Run DeSeq2
-dds <- DESeq(dds)
-
-# Obtain the results
-res_Primary_normal <- results(dds, contrast=c("Tumor.Descriptor","Primary","Not Applicable"))
-res_Metastatic_normal <- results(dds, contrast=c("Tumor.Descriptor","Metastatic","Not Applicable"))
-
-# Take 
-res_Primary_normal<-data.frame(res_Primary_normal[which(res_Primary_normal$padj<0.05 & abs(res_Primary_normal$log2FoldChange)>2),])
-res_Metastatic_normal<-data.frame(res_Metastatic_normal[which(res_Metastatic_normal$padj<0.05 & abs(res_Metastatic_normal$log2FoldChange)>2),])
-########################################################################
 
 
