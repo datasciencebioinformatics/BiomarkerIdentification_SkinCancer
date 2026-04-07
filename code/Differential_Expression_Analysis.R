@@ -14,6 +14,4 @@ res_tumor_normal <- results(dds, contrast=c("Tissue.Type","Tumor","Normal"))
 res_tumor_normal<-data.frame(res_tumor_normal[which(res_tumor_normal$padj<0.05 & abs(res_tumor_normal$log2FoldChange)>2),])
 
 
-########################################################################
-
 
