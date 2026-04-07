@@ -7,6 +7,9 @@ project_folder="C:/Users/felip/OneDrive/Documentos/GitHub/BiomarkerIdentificatio
 source(paste(project_folder,"/code/Load_All_R_Packages.R",sep=""))
 
 ### 2- Generate read counts table 
+### output:
+#### read_counts_table      : unstranded raw counts 
+#### read_counts_table_tpm  : unstranded tpm counts
 source(paste(project_folder,"/code/Generate_read_counts_table.R",sep=""))
 
 ### 3- Differential expression analyss
