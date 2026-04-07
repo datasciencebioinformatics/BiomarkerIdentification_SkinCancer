@@ -52,16 +52,17 @@ for (sample in rownames(sample_sheet_data))
   rownames(counts_table)<-counts_table$gene_id
 
   # Start data.frame for the table unstranded
-  df_counts_table<-data.frame(file_id=counts_table[rownames(counts_table),"unstranded"])
+  df_counts_table_unstranded<-data.frame(file_id=counts_table[rownames(counts_table),"unstranded"])
 
   # Start data.frame for the table unstranded
-  df_counts_table_tpm<-data.frame(file_id=counts_table[rownames(df_counts_table_tpm),"tpm_unstranded"])  
+  df_counts_table_tpm<-data.frame(file_id=counts_table[rownames(counts_table),"tpm_unstranded"])  
 
   # Set file_id in the colname
-  colnames(df_counts_table)<-file_id
+  colnames(df_counts_table_unstranded)<-file_id
+  colnames(df_counts_table_tpm)<-file_id
 
   # Add to table unstranded
-  read_counts_table<-cbind(read_counts_table,df_counts_table)
+  read_counts_table<-cbind(df_counts_table_unstranded,df_counts_table)
 
   # Add to table tpm_unstranded
   read_counts_table_tpm<-cbind(df_counts_table_tpm,df_counts_table)  
